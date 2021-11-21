@@ -11,15 +11,26 @@
             color: black;
             text-align: center;
         }
+        .inputForm {
+            width: 300px;
+            margin: 0 auto;
+        }
     </style>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div layout:fragment="content">
-
-
-
+    <form class="inputForm" th:action="@{doLogin}" th:object="${loginModel}" method="post">
+        <input type="text" id="username" name="username" placeholder="Username" class="form-control form-control-lg"
+               th:field="*{username}"/>
+        <h5 style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></h5>
+        <input type="password" id="password" name="password" placeholder="Password" class="form-control form-control-lg"
+               th:field="*{password}"/>
+        <h5 style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></h5>
+        <button class="btn btn-primary" type="submit">Login</button>
+        <a class="btn btn-primary" href="/registration/" role="button">Register</a>
+    </form>
 </div>
 
 <div layout:fragment="footer" class="footer"></div>
