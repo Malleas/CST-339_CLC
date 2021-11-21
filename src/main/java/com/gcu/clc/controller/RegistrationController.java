@@ -8,18 +8,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/register")
+@RequestMapping("/")
 
 public class RegistrationController {
-    @GetMapping("/")
-    public String display(Model model) {
-        model.addAttribute("title", "Registration Form");
-        model.addAttribute("user", "user");
-        return "register";
+    @GetMapping("/registration")
+    public ModelAndView display() {
+
+        ModelAndView mv = new ModelAndView("registration");
+        mv.addObject("title", "Registration Form");
+        mv.addObject("user", new User() );
+        return mv;
 
 
     }
@@ -31,7 +34,7 @@ public class RegistrationController {
         if(bindingResult.hasErrors())
         {
             model.addAttribute("title", "Registration Form");
-            return "register";
+            return "registration";
         }
         return "login";
     }
