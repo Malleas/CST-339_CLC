@@ -1,6 +1,6 @@
 package com.gcu.clc.controller;
 
-import com.gcu.clc.model.User;
+import com.gcu.clc.model.UserModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,29 +13,33 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/")
-
+@RequestMapping("/registration")
 public class RegistrationController {
-    @GetMapping("/registration")
+    @GetMapping("/")
     public ModelAndView display() {
-
-        ModelAndView mv = new ModelAndView("registration");
-        mv.addObject("title", "Registration Form");
-        mv.addObject("user", new User() );
-        return mv;
-
-
+        ModelAndView modelAndView = new ModelAndView();
+        UserModel userModel = new UserModel();
+        modelAndView.addObject("title", "Registration Form");
+        modelAndView.addObject("userModel", userModel);
+        modelAndView.setViewName("registration");
+        return modelAndView;
     }
 
-    @PostMapping("/doRegister")
-    public String doRegister(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
-
+    @PostMapping("/register")
+    public String register(@Valid UserModel userModel, BindingResult bindingResult, Model model) {
         // Check validation errors
+        ModelAndView modelAndView = new ModelAndView();
         if(bindingResult.hasErrors())
         {
-            model.addAttribute("title", "Registration Form");
+            modelAndView.addObject("title", "Registration Form");
             return "registration";
         }
-        return "login";
+        System.out.println("First Name: " + userModel.getFirstName() + "\n" +
+                "Last Name: " + userModel.getLastName() + "\n" +
+                "Email: " + userModel.getEmail() + "\n" +
+                "Phone Number: " + userModel.getPhoneNumber() + "\n" +
+                "Username: " + userModel.getUsername() + "\n" +
+                "Password: " + userModel.getPassword());
+        return "regSuccess";
     }
 }
