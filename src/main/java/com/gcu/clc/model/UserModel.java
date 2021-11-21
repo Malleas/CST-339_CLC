@@ -1,6 +1,6 @@
 package com.gcu.clc.model;
 
-public class User {
+public class UserModel {
     private String firstName;
     private String lastName;
     private String email;
@@ -8,14 +8,6 @@ public class User {
     private String username;
     private String password;
 
-    public User(String firstName, String lastName, String email, String phoneNumber, String username, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.username = username;
-        this.password = password;
-    }
 
     public String getFirstName() {
         return firstName;
