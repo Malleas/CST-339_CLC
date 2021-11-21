@@ -1,11 +1,33 @@
 package com.gcu.clc.model;
 
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class UserModel {
+
+    @NotNull(message="First name is a required field")
+    @Size(min=1, max=32, message="First name must be between 1 and 32 characters")
     private String firstName;
+
+    @NotNull(message="Last name is a required field")
+    @Size(min=1, max=32, message="Last name must be between 1 and 32 characters")
     private String lastName;
+
+    @NotNull(message="Email is a required field")
+    @Size(min=1, max=32, message="Email must be between 1 and 32 characters")
     private String email;
+
+    @NotNull(message="Phone Number is required")
+    @Size(min=1, max=10, message="Phone Number must be between 1 and 10 characters")
     private String phoneNumber;
+
+    @NotNull(message="User name is a required field")
+    @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
     private String username;
+
+    @NotNull(message="Password is a required field")
+    @Size(min=1, max=32, message="Password must be between 1 and 32 characters")
     private String password;
 
 
