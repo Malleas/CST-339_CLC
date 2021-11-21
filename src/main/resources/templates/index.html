@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
 <head>
+    <style>
+        .footer{
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #9CB2BC;
+            color: black;
+            text-align: center;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div layout:fragment="content">
-
-
+    <h2>Index / Home page</h2>
+    <h2>Welcome</h2>
 </div>
 
+<div layout:fragment="footer" class="footer"></div>
 </body>
 </html>
