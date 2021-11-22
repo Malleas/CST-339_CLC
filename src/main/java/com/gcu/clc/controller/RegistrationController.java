@@ -1,6 +1,8 @@
 package com.gcu.clc.controller;
 
+import com.gcu.clc.business.UserBusinessService;
 import com.gcu.clc.model.UserModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,10 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
+
+    @Autowired
+    private UserBusinessService userBusinessService;
+
     @GetMapping("/")
     public ModelAndView display() {
         ModelAndView modelAndView = new ModelAndView();
@@ -34,12 +40,8 @@ public class RegistrationController {
             modelAndView.addObject("title", "Registration Form");
             return "registration";
         }
-        System.out.println("First Name: " + userModel.getFirstName() + "\n" +
-                "Last Name: " + userModel.getLastName() + "\n" +
-                "Email: " + userModel.getEmail() + "\n" +
-                "Phone Number: " + userModel.getPhoneNumber() + "\n" +
-                "Username: " + userModel.getUsername() + "\n" +
-                "Password: " + userModel.getPassword());
+        userBusinessService.createUser(userModel.getFirstName(), userModel.getLastName(), userModel.getEmail(),
+                userModel.getPhoneNumber(), userModel.getUsername(), userModel.getPassword());
         return "regSuccess";
     }
 }

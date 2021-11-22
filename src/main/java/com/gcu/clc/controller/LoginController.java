@@ -1,7 +1,8 @@
 package com.gcu.clc.controller;
 
+import com.gcu.clc.business.SecurityBusinessService;
 import com.gcu.clc.model.LoginModel;
-import com.gcu.clc.model.UserModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,9 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
+
+    @Autowired
+    private SecurityBusinessService security;
 
     @GetMapping("/")
     public ModelAndView display(){
@@ -32,7 +36,7 @@ public class LoginController {
             modelAndView.addObject("title", "Login Form");
             return "login";
         }
-        System.out.println("Username: " + loginModel.getUsername() + "\n" + "Password: " + loginModel.getPassword());
+        security.authenticate(loginModel.getUsername(), loginModel.getPassword());
         return "index";
     }
 

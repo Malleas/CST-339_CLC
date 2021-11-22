@@ -30,6 +30,17 @@ public class UserModel {
     @Size(min=1, max=32, message="Password must be between 1 and 32 characters")
     private String password;
 
+    public UserModel(String firstName, String lastName, String email, String phoneNumber, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.username = username;
+        this.password = password;
+    }
+
+    public UserModel() {
+    }
 
     public String getFirstName() {
         return firstName;
