@@ -33,24 +33,24 @@
         }
     </style>
     <meta charset="UTF-8">
-    <title>Add Product Page</title>
+    <title>Add Products</title>
 
 </head>
 <body>
 
 <div layout:fragment="content">
-    <form class="inputForm" th:action="@{addProduct}" th:object="${productModel}" method="post">
+    <form class="inputForm" th:action="@{}" th:object="${productModel}" method="post">
         <input type="text" id="productName" name="productName" placeholder="Product Name" class="form-control form-control-lg"
                th:field="*{productName}"/>
         <h5 style="color: red" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></h5>
-        <input type="text" id="productDescription" name="productDescription" placeholder="Description" class="form-control form-control-lg"
+        <input type="text" id="productDescription" name="productDescription" placeholder="Product Description" class="form-control form-control-lg"
                th:field="*{productDescription}"/>
         <h5 style="color: red" th:if="${#fields.hasErrors('productDescription')}" th:errors="*{productDescription}"></h5>
-        <input type="text" id="productPrice" name="productPrice" placeholder="Price"
-               class="form-control form-control-lg" th:field="*{productPrice}"/>
+        <input type="text" id="productPrice" name="productPrice" placeholder="Product Price" class="form-control form-control-lg"
+               th:field="*{productPrice}"/>
         <h5 style="color: red" th:if="${#fields.hasErrors('productPrice')}" th:errors="*{productPrice}"></h5>
-        <input type="text" id="productQuantity" name="productQuantity" placeholder="Quantity" class="form-control form-control-lg"
-               th:field="*{productQuantity}"/>
+        <input type="text" id="productQuantity" name="productQuantity" placeholder="Product Quantity"
+               class="form-control form-control-lg" th:field="*{productQuantity}"/>
         <h5 style="color: red" th:if="${#fields.hasErrors('productQuantity')}" th:errors="*{productQuantity}"></h5>
         <button class="btn btn-primary" type="submit">Add Product</button>
     </form>
