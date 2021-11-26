@@ -9,15 +9,13 @@ public class ProductModel {
     private String productName;
 
     @NotNull(message = "Item description is required")
-    @Size(min = 1, max = 10, message = "Item description must be between 1 and 32 characters")
+    @Size(min = 1, max = 255, message = "Item description must be between 1 and 255 characters")
     private String productDescription;
 
     @NotNull(message = "Item price is a required field")
-    @Size(min = 1, max = 32, message = "Item price must be between 1 and 32 characters")
     private float productPrice;
 
     @NotNull(message = "Item quantity is a required field")
-    @Size(min = 1, max = 32, message = "Item quantity must be between 1 and 32 characters")
     private int productQuantity;
 
     public ProductModel() {
