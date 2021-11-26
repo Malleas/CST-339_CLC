@@ -55,7 +55,6 @@ public class ProductController {
     public String addProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
             model.addAttribute("title", "Add Product Page");
-
             return "addProduct";
         }
         productBusinessService.addProduct(productModel.getProductName(), productModel.getProductDescription(),
