@@ -29,36 +29,35 @@ public class ProductModel {
     public ProductModel() {
     }
 
-    public String getproductName() {
+    public String getProductName() {
         return productName;
-
     }
-    public void setproductName(String productName) {
+
+    public void setProductName(String productName) {
         this.productName = productName;
-
     }
 
-    public String getproductDescription() {
+    public String getProductDescription() {
         return productDescription;
-
     }
-    public void setproductDescription(String productDescription) {
+
+    public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
-
     }
-    public float getproductPrice() {
+
+    public float getProductPrice() {
         return productPrice;
-
     }
-    public void setproductPrice(float productPrice) {
+
+    public void setProductPrice(float productPrice) {
         this.productPrice = productPrice;
-
     }
-    public int getproductQuantity() {
+
+    public int getProductQuantity() {
         return productQuantity;
     }
 
-    public void setproductQuantity(int productQuantity) {
+    public void setProductQuantity(int productQuantity) {
         this.productQuantity = productQuantity;
     }
 }

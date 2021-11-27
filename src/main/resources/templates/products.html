@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
@@ -20,20 +20,38 @@
             color: black;
             text-align: center;
         }
+        .inputForm {
+            width: 500px;
+            margin: 0 auto;
+        }
     </style>
     <meta charset="UTF-8">
     <title>Products</title>
 
 </head>
 <body>
-<div layout:fragment="content">
-    <form class="inputForm" th:action="@{}" th:object="${}" method="post">
-        <button class="btn btn-primary" type="submit">Add Product Page</button>
-    </form>
-    <form class="inputForm" th:action="@{}" th:object="${}" method="post">
-        <button class="btn btn-primary" type="submit">Edit Product Page</button>
-    </form>
+<div layout:fragment="content" class="inputForm">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Click here to add a new product</p>
+                    <a href="add" class="btn btn-primary" type="submit">Add Product</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Click here to edit an existing product</p>
+                    <a href="edit" class="btn btn-primary" type="submit">Edit Product</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="footer" layout:fragment="footer"></div>
 
 </body>
 </html>
