@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductBusinessService {
 
-    public ProductModel addProduct(String productName, String productDescription, float productPrice, int productQuantity){
+    public ProductModel addProduct(String productName, String productDescription, Float productPrice, Integer productQuantity){
         System.out.println("Product Name: " + productName + "\n" +
                 "Product Description: " + productDescription + "\n" +
                 "Price: " + productPrice + "\n" +

@@ -1,5 +1,7 @@
 package com.gcu.clc.model;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -14,12 +16,14 @@ public class ProductModel {
     private String productDescription;
 
     @NotNull(message="Product price is a required field")
-    private float productPrice;
+    @Range(min=1, max=1000, message="Product price must be between 1 and 10 characters")
+    private Float productPrice;
 
     @NotNull(message="Product quantity is a required field")
-    private int productQuantity;
+    @Range(min=1, max=1000, message="Product quantity must be between 1 and 10 characters")
+    private Integer productQuantity;
 
-    public ProductModel(String productName, String productDescription, float productPrice, int productQuantity) {
+    public ProductModel(String productName, String productDescription, Float productPrice, Integer productQuantity) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productPrice = productPrice;
@@ -45,19 +49,19 @@ public class ProductModel {
         this.productDescription = productDescription;
     }
 
-    public float getProductPrice() {
+    public Float getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(float productPrice) {
+    public void setProductPrice(Float productPrice) {
         this.productPrice = productPrice;
     }
 
-    public int getProductQuantity() {
+    public Integer getProductQuantity() {
         return productQuantity;
     }
 
-    public void setProductQuantity(int productQuantity) {
+    public void setProductQuantity(Integer productQuantity) {
         this.productQuantity = productQuantity;
     }
 }

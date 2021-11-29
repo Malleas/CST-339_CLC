@@ -55,7 +55,7 @@
         <input type="text" id="username" name="username" placeholder="Username" class="form-control form-control-lg"
                th:field="*{username}"/>
         <h5 style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></h5>
-        <input type="text" id="password" name="password" placeholder="Password" class="form-control form-control-lg"
+        <input type="password" id="password" name="password" placeholder="Password" class="form-control form-control-lg"
                th:field="*{password}"/>
         <h5 style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></h5>
         <button class="btn btn-primary" type="submit">Register</button>
