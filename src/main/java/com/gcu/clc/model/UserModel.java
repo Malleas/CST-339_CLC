@@ -6,6 +6,8 @@ import javax.validation.constraints.Size;
 
 public class UserModel {
 
+    private int userId;
+
     @NotNull(message="First name is a required field")
     @Size(min=1, max=32, message="First name must be between 1 and 32 characters")
     private String firstName;
@@ -30,6 +32,13 @@ public class UserModel {
     @Size(min=1, max=32, message="Password must be between 1 and 32 characters")
     private String password;
 
+    /**
+     * non form entry fields, will be defaulted upon new user creation but getter/setter may be needed for future use to
+     * limit site use or deactivate user.
+     */
+    private boolean isActive;
+    private int roleId;
+
     public UserModel(String firstName, String lastName, String email, String phoneNumber, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,6 +46,18 @@ public class UserModel {
         this.phoneNumber = phoneNumber;
         this.username = username;
         this.password = password;
+    }
+
+    public UserModel(int userId, String firstName, String lastName, String email, String phoneNumber, String username, String password, boolean isActive, int roleId) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.username = username;
+        this.password = password;
+        this.isActive = isActive;
+        this.roleId = roleId;
     }
 
     public UserModel() {
@@ -88,5 +109,29 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

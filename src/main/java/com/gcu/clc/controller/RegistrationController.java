@@ -40,8 +40,11 @@ public class RegistrationController {
             modelAndView.addObject("title", "Registration Form");
             return "registration";
         }
-        userBusinessService.createUser(userModel.getFirstName(), userModel.getLastName(), userModel.getEmail(),
-                userModel.getPhoneNumber(), userModel.getUsername(), userModel.getPassword());
-        return "regSuccess";
+        if (userBusinessService.createUser(userModel)){
+            return "regSuccess";
+        }else {
+            return "registration";
+        }
+
     }
 }
