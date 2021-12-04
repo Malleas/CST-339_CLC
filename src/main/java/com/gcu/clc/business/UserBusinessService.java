@@ -1,18 +1,22 @@
 package com.gcu.clc.business;
 
+import com.gcu.clc.data.DataAccessInterface;
+import com.gcu.clc.model.ProductModel;
 import com.gcu.clc.model.UserModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class UserBusinessService {
+import java.util.List;
 
-    public UserModel createUser(String firstName, String lastName, String email, String phoneNumber, String username, String password){
-        System.out.println("First Name: " + firstName + "\n" +
-                "Last Name: " + lastName + "\n" +
-                "Email: " + email + "\n" +
-                "Phone Number: " + phoneNumber+ "\n" +
-                "Username: " + username + "\n" +
-                "Password: " + password);
+@Service
+public class UserBusinessService implements UserBusinessServiceInterface {
+
+    @Autowired
+    private DataAccessInterface<UserModel> service;
+
+    public List<UserModel> addUsers();
+
+
         return new UserModel(firstName, lastName, email, phoneNumber, username, password);
     }
 }

@@ -1,16 +1,22 @@
 package com.gcu.clc.business;
 
+import com.gcu.clc.data.DataAccessInterface;
 import com.gcu.clc.model.ProductModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class ProductBusinessService {
+import java.util.List;
 
-    public ProductModel addProduct(String productName, String productDescription, Float productPrice, Integer productQuantity){
-        System.out.println("Product Name: " + productName + "\n" +
-                "Product Description: " + productDescription + "\n" +
-                "Price: " + productPrice + "\n" +
-                "Quantity: " + productQuantity);
+@Service
+public class ProductBusinessService implements ProductBusinessServiceInterface
+{
+    @Autowired
+    private DataAccessInterface<ProductModel> service;
+
+
+    public List<ProductModel> addProduct();
+
+
         return new ProductModel(productName, productDescription, productPrice, productQuantity);
     }
 }
