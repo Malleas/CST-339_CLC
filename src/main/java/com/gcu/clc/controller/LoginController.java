@@ -36,8 +36,16 @@ public class LoginController {
             modelAndView.addObject("title", "Login Form");
             return "login";
         }
-        security.authenticate(loginModel.getUsername(), loginModel.getPassword());
-        return "index";
+        /**
+         * Currently SecurityDataService returns the USER_ID if the username and password match.  We'll use this in the
+         * session at some point.
+         */
+        int loginStatus = security.authenticate(loginModel.getUsername(), loginModel.getPassword());
+        if(loginStatus == 0){
+            return "login";
+        }else {
+            return "index";
+        }
     }
 
 }

@@ -57,8 +57,10 @@ public class ProductController {
             model.addAttribute("title", "Add Product Page");
             return "addProduct";
         }
-        productBusinessService.addProduct(productModel.getProductName(), productModel.getProductDescription(),
-                productModel.getProductPrice(), productModel.getProductQuantity());
-        return "index";
+        if(productBusinessService.addProduct(productModel)){
+            return "index";
+        }else {
+            return "addProduct";
+        }
     }
 }
