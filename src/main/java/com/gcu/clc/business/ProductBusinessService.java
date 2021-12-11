@@ -22,4 +22,9 @@ public class ProductBusinessService {
     public boolean updateProduct(ProductModel productModel){
         return productDataService.update(productModel);
     }
+
+    public boolean deleteProduct(int id)
+    {
+        return productDataService.delete(id);
+    }
 }

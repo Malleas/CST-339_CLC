@@ -1,14 +1,14 @@
 package com.gcu.clc.controller;
 
 import com.gcu.clc.business.ProductBusinessService;
+import com.gcu.clc.data.ProductDataService;
+import com.gcu.clc.model.LoginModel;
 import com.gcu.clc.model.ProductModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -72,6 +72,17 @@ public class ProductController {
             return "index";
         }else {
             return "updateProduct";
+        }
+    }
+
+    @DeleteMapping("/deletePrduct/{id}")
+    public String deleteProduct(@Valid ProductModel productModel, BindingResult bindingResult, @RequestParam(value = "id") int id)
+    {
+        if(productBusinessService.deleteProduct(id))
+        {
+            return "index";
+        } else {
+            return "deleteProduct";
         }
     }
 }
