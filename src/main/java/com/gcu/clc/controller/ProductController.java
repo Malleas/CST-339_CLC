@@ -39,13 +39,23 @@ public class ProductController {
         return modelAndView;
     }
 
-    @GetMapping("/edit")
+    @GetMapping("/update")
     public ModelAndView displayEditProducts(){
         ModelAndView modelAndView = new ModelAndView();
         ProductModel productModel = new ProductModel();
         modelAndView.addObject("title", "Edit Product Page");
         modelAndView.addObject("productModel", productModel);
         modelAndView.setViewName("updateProduct");
+        return modelAndView;
+    }
+
+    @GetMapping("/delete")
+    public ModelAndView displayDeleteProducts(){
+        ModelAndView modelAndView = new ModelAndView();
+        ProductModel productModel = new ProductModel();
+        modelAndView.addObject("title", "Delete Product Page");
+        modelAndView.addObject("productModel", productModel);
+        modelAndView.setViewName("deleteProduct");
         return modelAndView;
     }
 
@@ -75,7 +85,7 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/deletePrduct/{id}")
+    @DeleteMapping("/deleteProduct/{id}")
     public String deleteProduct(@Valid ProductModel productModel, BindingResult bindingResult, @RequestParam(value = "id") int id)
     {
         if(productBusinessService.deleteProduct(id))
