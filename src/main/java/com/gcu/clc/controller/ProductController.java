@@ -63,4 +63,10 @@ public class ProductController {
             return "addProduct";
         }
     }
+
+    @PostMapping("/deleteProduct")
+    public String deleteProduct(int ID){
+        return null;
+    }
+
 }
