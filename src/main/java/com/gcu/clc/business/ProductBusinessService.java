@@ -19,4 +19,9 @@ public class ProductBusinessService {
     {
         return productDataService.delete(id);
     }
+
+    public ProductModel getProduct(int id)
+    {
+        return productDataService.getById(id);
+    }
 }

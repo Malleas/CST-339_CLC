@@ -50,6 +50,19 @@ public class ProductController {
         return modelAndView;
     }
 
+    @GetMapping("/delete/{id}")
+    public ModelAndView displayDeleteProducts(@RequestParam(value = "id") int id)
+    {
+        ModelAndView modelAndView = new ModelAndView();
+        ProductModel productModel = productBusinessService.getProduct(id);
+        modelAndView.addObject("title", "Edit Product Page");
+        modelAndView.addObject("productModel", productModel);
+        modelAndView.addObject("productID", productModel.getProductId());
+        modelAndView.setViewName("deleteProduct");
+        return modelAndView;
+
+    }
+
     @PostMapping("/addProduct")
     public String addProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
@@ -63,7 +76,7 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/deletePrduct/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteProduct(@Valid ProductModel productModel, BindingResult bindingResult, @RequestParam(value = "id") int id)
     {
         if(productBusinessService.deleteProduct(id))
