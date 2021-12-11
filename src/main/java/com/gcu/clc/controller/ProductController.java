@@ -1,7 +1,6 @@
 package com.gcu.clc.controller;
 
 import com.gcu.clc.business.ProductBusinessService;
-import com.gcu.clc.model.LoginModel;
 import com.gcu.clc.model.ProductModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,9 +23,8 @@ public class ProductController {
     @GetMapping("/")
     public ModelAndView display(){
         ModelAndView modelAndView = new ModelAndView();
-        ProductModel productModel = new ProductModel();
         modelAndView.addObject("title", "Product Page");
-        modelAndView.addObject("productModel", productModel);
+        modelAndView.addObject("products", productBusinessService.getAll());
         modelAndView.setViewName("products");
         return modelAndView;
     }
@@ -47,7 +45,7 @@ public class ProductController {
         ProductModel productModel = new ProductModel();
         modelAndView.addObject("title", "Edit Product Page");
         modelAndView.addObject("productModel", productModel);
-        modelAndView.setViewName("editProduct");
+        modelAndView.setViewName("updateProduct");
         return modelAndView;
     }
 
@@ -61,6 +59,19 @@ public class ProductController {
             return "index";
         }else {
             return "addProduct";
+        }
+    }
+
+    @PostMapping("/updateProduct")
+    public String updateProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("title", "Add Product Page");
+            return "updateProduct";
+        }
+        if(productBusinessService.updateProduct(productModel)){
+            return "index";
+        }else {
+            return "updateProduct";
         }
     }
 }

@@ -5,6 +5,8 @@ import com.gcu.clc.model.ProductModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductBusinessService {
 
@@ -13,5 +15,11 @@ public class ProductBusinessService {
 
     public boolean addProduct(ProductModel productModel){
        return productDataService.create(productModel);
+    }
+    public List<ProductModel> getAll() {
+        return productDataService.getAll();
+    }
+    public boolean updateProduct(ProductModel productModel){
+        return productDataService.update(productModel);
     }
 }

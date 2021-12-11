@@ -26,7 +26,7 @@ public class ProductDataService implements DataAccessInterface<ProductModel> {
 
     @Override
     public List<ProductModel> getAll() {
-        String sql = "SELECT * FROM PRODUCTS";
+        String sql = "SELECT * FROM PRODUCT";
         List<ProductModel> products = new ArrayList<>();
         try {
             SqlRowSet srs = jdbcTemplate.queryForRowSet(sql);
