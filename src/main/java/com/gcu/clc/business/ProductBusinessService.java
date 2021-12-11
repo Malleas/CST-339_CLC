@@ -14,4 +14,9 @@ public class ProductBusinessService {
     public boolean addProduct(ProductModel productModel){
        return productDataService.create(productModel);
     }
+
+    public boolean deleteProduct(int id)
+    {
+        return productDataService.delete(id);
+    }
 }
