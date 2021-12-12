@@ -41,9 +41,7 @@
 
 <div layout:fragment="content">
     <form class="inputForm" th:action="@{deleteProduct}" th:object="${productModel}" method="post">
-        <input type="text" id="productID" name="productID" placeholder="Product ID" class="form-control form-control-lg"
-               th:field="*{productID}"/>
-        <h5 style="color: red" th:if="${#fields.hasErrors('productID')}" th:errors="*{productID}"></h5>
+        <input type="number" id="productId" name="productId" placeholder="Product Id" class="form-control form-control-lg"/>
         <button class="btn btn-primary" type="submit">Delete Product</button>
     </form>
 </div>

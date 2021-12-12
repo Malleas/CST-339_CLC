@@ -23,9 +23,8 @@ public class ProductController {
     @GetMapping("/")
     public ModelAndView display(){
         ModelAndView modelAndView = new ModelAndView();
-        ProductModel productModel = new ProductModel();
         modelAndView.addObject("title", "Product Page");
-        modelAndView.addObject("productModel", productModel);
+        modelAndView.addObject("products", productBusinessService.getAll());
         modelAndView.setViewName("products");
         return modelAndView;
     }
@@ -40,37 +39,66 @@ public class ProductController {
         return modelAndView;
     }
 
-    @GetMapping("/edit")
+    @GetMapping("/update")
     public ModelAndView displayEditProducts(){
         ModelAndView modelAndView = new ModelAndView();
         ProductModel productModel = new ProductModel();
         modelAndView.addObject("title", "Edit Product Page");
         modelAndView.addObject("productModel", productModel);
-        modelAndView.setViewName("editProduct");
+        modelAndView.setViewName("updateProduct");
+        return modelAndView;
+    }
+
+    @GetMapping("/delete")
+    public ModelAndView displayDeleteProducts(){
+        ModelAndView modelAndView = new ModelAndView();
+        ProductModel productModel = new ProductModel();
+        modelAndView.addObject("title", "Delete Product Page");
+        modelAndView.addObject("productModel", productModel);
+        modelAndView.setViewName("deleteProduct");
         return modelAndView;
     }
 
     @PostMapping("/addProduct")
-    public String addProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model){
+    public ModelAndView addProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("addProduct");
         if(bindingResult.hasErrors()){
             model.addAttribute("title", "Add Product Page");
-            return "addProduct";
+            return modelAndView;
         }
         if(productBusinessService.addProduct(productModel)){
-            return "index";
+            return this.display();
         }else {
-            return "addProduct";
+            return modelAndView;
         }
     }
 
-    @DeleteMapping("/deletePrduct/{id}")
-    public String deleteProduct(@Valid ProductModel productModel, BindingResult bindingResult, @RequestParam(value = "id") int id)
-    {
-        if(productBusinessService.deleteProduct(id))
+    @PostMapping("/updateProduct")
+    public ModelAndView updateProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("updateProduct");
+        if(bindingResult.hasErrors()){
+            model.addAttribute("title", "Add Product Page");
+            return modelAndView;
+        }
+        if(productBusinessService.updateProduct(productModel)){
+            return this.display();
+        }else {
+            return modelAndView;
+        }
+    }
+
+    @PostMapping("/deleteProduct")
+    public ModelAndView deleteProduct(ProductModel productModel) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("deleteProduct");
+
+        if(productBusinessService.deleteProduct(productModel))
         {
-            return "index";
+            return this.display();
         } else {
-            return "deleteProduct";
+            return modelAndView;
         }
     }
 }

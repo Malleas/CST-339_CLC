@@ -24,6 +24,11 @@
             width: 500px;
             margin: 0 auto;
         }
+
+        .productTable {
+            width: 1500px;
+            margin: 0 auto;
+        }
     </style>
     <meta charset="UTF-8">
     <title>Products</title>
@@ -31,25 +36,41 @@
 </head>
 <body>
 <div layout:fragment="content" class="inputForm">
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text">Click here to add a new product</p>
-                    <a href="add" class="btn btn-primary" type="submit">Add Product</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text">Click here to edit an existing product</p>
-                    <a href="edit" class="btn btn-primary" type="submit">Edit Product</a>
-                </div>
-            </div>
-        </div>
+    <a href="add" class="btn btn-primary" type="submit">Add Product</a>
+    <a href="update" class="btn btn-primary" type="submit">Update Product</a>
+    <a href="delete" class="btn btn-primary" type="submit">Delete Product</a>
+</div>
+<div class="productTable" layout:fragment="table">
+    <div>
+        <table style="width:50%">
+            <thead>
+            <tr>
+                <th style="text-align: center">Product ID</th>
+                <th style="text-align: center">Product Name</th>
+                <th style="text-align: center">Product Description</th>
+                <th style="text-align: center">Product Price</th>
+                <th style="text-align: center">Product Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${products.empty}">
+                <td style="text-align: center" colspan="4"> No Orders Available </td>
+            </tr>
+            <tr th:each="productModel : ${products}">
+                <td style="text-align: center"><h5 th:text="${productModel.productId}">0000000001</h5></td>
+                <td style="text-align: center"><h5 th:text="${productModel.productName}">Product 1</h5></td>
+                <td style="text-align: center"><h5 th:text="${productModel.productDescription}">1.0</h5></td>
+                <td style="text-align: center"><h5 th:text="${productModel.productPrice}">1</h5></td>
+                <td style="text-align: center"><h5 th:text="${productModel.productQuantity}">1</h5></td>
+
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+
+
+
 
 <div class="footer" layout:fragment="footer"></div>
 

@@ -1,5 +1,6 @@
 package com.gcu.clc.data;
 
+import com.gcu.clc.model.ProductModel;
 import com.gcu.clc.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -81,10 +82,10 @@ public class UserDataService implements DataAccessInterface<UserModel> {
 
     @Override
     public boolean update(UserModel user) {
-        String sql = "UPDATE USER SET FIRST_NAME = ?, LAST_NAME = ?, EMAIL = ?, PHONE_NUMBER = ?, USERNAME = ?, PASSWORD = ?";
+        String sql = "UPDATE USER SET FIRST_NAME = ?, LAST_NAME = ?, EMAIL = ?, PHONE_NUMBER = ?, USERNAME = ?, PASSWORD = ? WHERE USER_ID = ?";
         try {
             jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getPhoneNumber(),
-                    user.getUsername(), user.getPassword());
+                    user.getUsername(), user.getPassword(), user.getUserId());
         }catch (Exception e){
             e.printStackTrace();
             return false;
@@ -94,10 +95,10 @@ public class UserDataService implements DataAccessInterface<UserModel> {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(UserModel userModel) {
         String sql = "DELETE FROM USER WHERE USER_ID = ?";
         try {
-            jdbcTemplate.update(sql, id);
+            jdbcTemplate.update(sql, userModel.getUserId());
         }catch (Exception e){
             e.printStackTrace();
             return false;

@@ -26,7 +26,7 @@ public class ProductDataService implements DataAccessInterface<ProductModel> {
 
     @Override
     public List<ProductModel> getAll() {
-        String sql = "SELECT * FROM PRODUCTS";
+        String sql = "SELECT * FROM PRODUCT";
         List<ProductModel> products = new ArrayList<>();
         try {
             SqlRowSet srs = jdbcTemplate.queryForRowSet(sql);
@@ -77,10 +77,10 @@ public class ProductDataService implements DataAccessInterface<ProductModel> {
 
     @Override
     public boolean update(ProductModel productModel) {
-        String sql = "UPDATE PRODUCT SET PRODUCT_NAME = ?, PRODUCT_DESCRIPTION = ?, PRODUCT_PRICE = ?, PRODUCT_QUANTITY = ?";
+        String sql = "UPDATE PRODUCT SET PRODUCT_NAME = ?, PRODUCT_DESCRIPTION = ?, PRODUCT_PRICE = ?, PRODUCT_QUANTITY = ? WHERE PRODUCT_ID = ?";
         try {
             jdbcTemplate.update(sql, productModel.getProductName(), productModel.getProductDescription(),
-                    productModel.getProductPrice(), productModel.getProductQuantity());
+                    productModel.getProductPrice(), productModel.getProductQuantity(), productModel.getProductId());
         }catch (Exception e){
             e.printStackTrace();
             return false;
@@ -89,10 +89,10 @@ public class ProductDataService implements DataAccessInterface<ProductModel> {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(ProductModel productModel) {
         String sql = "DELETE FROM PRODUCT WHERE PRODUCT_ID = ?";
         try {
-            jdbcTemplate.update(sql, id);
+            jdbcTemplate.update(sql, productModel.getProductId());
         }catch (Exception e){
             e.printStackTrace();
             return false;

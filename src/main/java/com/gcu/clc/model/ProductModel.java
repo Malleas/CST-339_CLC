@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 
 public class ProductModel {
 
-    private int productId;
+    private Integer productId;
 
     @NotNull(message="Product name is a required field")
     @Size(min=1, max=32, message="Product name must be between 1 and 32 characters")
@@ -32,7 +32,7 @@ public class ProductModel {
         this.productQuantity = productQuantity;
     }
 
-    public ProductModel(int productId, String productName, String productDescription, Float productPrice, Integer productQuantity) {
+    public ProductModel(Integer productId, String productName, String productDescription, Float productPrice, Integer productQuantity) {
         this.productId = productId;
         this.productName = productName;
         this.productDescription = productDescription;
@@ -75,11 +75,11 @@ public class ProductModel {
         this.productQuantity = productQuantity;
     }
 
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 }
