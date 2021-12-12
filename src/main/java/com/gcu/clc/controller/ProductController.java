@@ -53,9 +53,8 @@ public class ProductController {
     public ModelAndView displayDeleteProducts(){
         ModelAndView modelAndView = new ModelAndView();
         ProductModel productModel = new ProductModel();
-        Integer productId = 0;
         modelAndView.addObject("title", "Delete Product Page");
-        modelAndView.addObject("productId", productId);
+        modelAndView.addObject("productModel", productModel);
         modelAndView.setViewName("deleteProduct");
         return modelAndView;
     }
@@ -91,14 +90,11 @@ public class ProductController {
     }
 
     @PostMapping("/deleteProduct")
-    public ModelAndView deleteProduct(@Valid int id, BindingResult bindingResult, Model model) {
+    public ModelAndView deleteProduct(ProductModel productModel) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("deleteProduct");
-        if(bindingResult.hasErrors()){
-            model.addAttribute("title", "Add Product Page");
-            return modelAndView;
-        }
-        if(productBusinessService.deleteProduct(id))
+
+        if(productBusinessService.deleteProduct(productModel))
         {
             return this.display();
         } else {

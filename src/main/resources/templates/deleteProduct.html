@@ -40,8 +40,8 @@
 <body>
 
 <div layout:fragment="content">
-    <form class="inputForm" th:action="@{deleteProduct}" th:object="${productId}" method="post">
-        <input type="text" id="productId" name="productId" placeholder="Product Id" class="form-control form-control-lg"/>
+    <form class="inputForm" th:action="@{deleteProduct}" th:object="${productModel}" method="post">
+        <input type="number" id="productId" name="productId" placeholder="Product Id" class="form-control form-control-lg"/>
         <button class="btn btn-primary" type="submit">Delete Product</button>
     </form>
 </div>

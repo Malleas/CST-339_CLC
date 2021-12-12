@@ -7,5 +7,5 @@ public interface DataAccessInterface <T>{
     public T getById(int id);
     public boolean create(T t);
     public boolean update(T t);
-    public boolean delete(int id);
+    public boolean delete(T t);
 }
