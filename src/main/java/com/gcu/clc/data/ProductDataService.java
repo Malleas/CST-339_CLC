@@ -77,10 +77,11 @@ public class ProductDataService implements DataAccessInterface<ProductModel> {
 
     @Override
     public boolean update(ProductModel productModel) {
-        String sql = "UPDATE PRODUCT SET PRODUCT_NAME = ?, PRODUCT_DESCRIPTION = ?, PRODUCT_PRICE = ?, PRODUCT_QUANTITY = ?";
+        String sql = "UPDATE PRODUCT SET PRODUCT_NAME = ?, PRODUCT_DESCRIPTION = ?, PRODUCT_PRICE = ?, PRODUCT_QUANTITY = ?" +
+                "WHERE PRODUCT_ID = ?";
         try {
             jdbcTemplate.update(sql, productModel.getProductName(), productModel.getProductDescription(),
-                    productModel.getProductPrice(), productModel.getProductQuantity());
+                    productModel.getProductPrice(), productModel.getProductQuantity(), productModel.getProductId());
         }catch (Exception e){
             e.printStackTrace();
             return false;

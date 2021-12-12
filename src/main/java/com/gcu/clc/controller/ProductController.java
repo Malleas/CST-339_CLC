@@ -53,46 +53,56 @@ public class ProductController {
     public ModelAndView displayDeleteProducts(){
         ModelAndView modelAndView = new ModelAndView();
         ProductModel productModel = new ProductModel();
+        Integer productId = 0;
         modelAndView.addObject("title", "Delete Product Page");
-        modelAndView.addObject("productModel", productModel);
+        modelAndView.addObject("productId", productId);
         modelAndView.setViewName("deleteProduct");
         return modelAndView;
     }
 
     @PostMapping("/addProduct")
-    public String addProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model){
+    public ModelAndView addProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("addProduct");
         if(bindingResult.hasErrors()){
             model.addAttribute("title", "Add Product Page");
-            return "addProduct";
+            return modelAndView;
         }
         if(productBusinessService.addProduct(productModel)){
-            return "index";
+            return this.display();
         }else {
-            return "addProduct";
+            return modelAndView;
         }
     }
 
     @PostMapping("/updateProduct")
-    public String updateProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model){
+    public ModelAndView updateProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("updateProduct");
         if(bindingResult.hasErrors()){
             model.addAttribute("title", "Add Product Page");
-            return "updateProduct";
+            return modelAndView;
         }
         if(productBusinessService.updateProduct(productModel)){
-            return "index";
+            return this.display();
         }else {
-            return "updateProduct";
+            return modelAndView;
         }
     }
 
-    @DeleteMapping("/deleteProduct/{id}")
-    public String deleteProduct(@Valid ProductModel productModel, BindingResult bindingResult, @RequestParam(value = "id") int id)
-    {
+    @PostMapping("/deleteProduct")
+    public ModelAndView deleteProduct(@Valid int id, BindingResult bindingResult, Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("deleteProduct");
+        if(bindingResult.hasErrors()){
+            model.addAttribute("title", "Add Product Page");
+            return modelAndView;
+        }
         if(productBusinessService.deleteProduct(id))
         {
-            return "index";
+            return this.display();
         } else {
-            return "deleteProduct";
+            return modelAndView;
         }
     }
 }

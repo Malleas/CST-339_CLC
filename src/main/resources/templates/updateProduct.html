@@ -39,6 +39,9 @@
 
 <div layout:fragment="content">
     <form class="inputForm" th:action="@{updateProduct}" th:object="${productModel}" method="post">
+        <input type="text" id="productId" name="productId" placeholder="Product Id" class="form-control form-control-lg"
+               th:field="*{productId}"/>
+        <h5 style="color: red" th:if="${#fields.hasErrors('productId')}" th:errors="*{productId}"></h5>
         <input type="text" id="productName" name="productName" placeholder="Product Name" class="form-control form-control-lg"
                th:field="*{productName}"/>
         <h5 style="color: red" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></h5>
