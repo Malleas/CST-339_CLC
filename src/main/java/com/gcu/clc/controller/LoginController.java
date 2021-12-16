@@ -14,13 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/login")
+
 public class LoginController {
 
     @Autowired
     private SecurityBusinessService security;
 
-    @GetMapping("/")
+    @GetMapping("/login")
     public ModelAndView display(){
         ModelAndView modelAndView = new ModelAndView();
         LoginModel loginModel = new LoginModel();

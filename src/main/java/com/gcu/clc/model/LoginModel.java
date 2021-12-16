@@ -5,6 +5,8 @@ import javax.validation.constraints.Size;
 
 public class LoginModel {
 
+    private int Id;
+
     @NotNull(message="User name is a required field")
     @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
     private String username;
@@ -12,6 +14,14 @@ public class LoginModel {
     @NotNull(message="Password is a required field")
     @Size(min=1, max=32, message="Password must be between 1 and 32 characters")
     private String password;
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
 
     public String getUsername() {
         return username;

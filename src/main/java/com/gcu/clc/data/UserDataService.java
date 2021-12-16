@@ -1,10 +1,12 @@
 package com.gcu.clc.data;
 
+import com.gcu.clc.model.LoginModel;
 import com.gcu.clc.model.ProductModel;
 import com.gcu.clc.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
@@ -69,10 +71,12 @@ public class UserDataService implements DataAccessInterface<UserModel> {
 
     @Override
     public boolean create(UserModel user) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
         String sql = "INSERT INTO USER(FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, USERNAME, PASSWORD) VALUES (?,?,?,?,?,?)";
         try {
             jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getPhoneNumber(),
-                    user.getUsername(), user.getPassword());
+                    user.getUsername(), hashedPassword);
         }catch (Exception e){
             e.printStackTrace();
             return false;
@@ -104,5 +108,21 @@ public class UserDataService implements DataAccessInterface<UserModel> {
             return false;
         }
         return true;
+    }
+
+    public LoginModel findByUsername(String username){
+        String sql = "SELECT * FROM USER WHERE USERNAME = ?";
+        LoginModel loginModel = new LoginModel();
+        try {
+            SqlRowSet srs = jdbcTemplate.queryForRowSet(sql, username);
+            while (srs.next()){
+                loginModel.setId(srs.getInt("USER_ID"));
+                loginModel.setUsername(srs.getString("USERNAME"));
+                loginModel.setPassword(srs.getString("PASSWORD"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return loginModel;
     }
 }
