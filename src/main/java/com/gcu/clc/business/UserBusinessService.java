@@ -30,13 +30,16 @@ public class UserBusinessService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
+    {
         LoginModel user = userDataService.findByUsername(username);
-        if(user != null){
+
+        if(user != null)
+        {
             List<GrantedAuthority> authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority("USER"));
             return new User(user.getUsername(), user.getPassword(), authorities);
-        }else {
+        } else {
             throw new UsernameNotFoundException("Username not found");
         }
     }

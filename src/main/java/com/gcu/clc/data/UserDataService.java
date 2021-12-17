@@ -1,7 +1,6 @@
 package com.gcu.clc.data;
 
 import com.gcu.clc.model.LoginModel;
-import com.gcu.clc.model.ProductModel;
 import com.gcu.clc.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
-import javax.swing.table.TableRowSorter;
 import java.util.ArrayList;
 import java.util.List;
 @Service
@@ -51,7 +49,8 @@ public class UserDataService implements DataAccessInterface<UserModel> {
         UserModel user = new UserModel();
         try {
             SqlRowSet srs = jdbcTemplate.queryForRowSet(sql, id);
-            while (srs.next()){
+            while (srs.next())
+            {
                 user.setUserId(id);
                 user.setFirstName(srs.getString("FIRST_NAME"));
                 user.setLastName(srs.getString("LAST_NAME"));

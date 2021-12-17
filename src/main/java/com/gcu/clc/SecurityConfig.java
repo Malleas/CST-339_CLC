@@ -32,22 +32,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/registration/**", "/images/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
+                    .antMatchers("/", "/registration/**", "/images/**").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
                 .formLogin()
-                .loginPage("/login")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .permitAll()
-                .defaultSuccessUrl("/index", true)
-                .and()
+                    .loginPage("/login")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .permitAll()
+                    .defaultSuccessUrl("/index", true)
+                    .and()
                 .logout()
-                .logoutUrl("/logout")
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .permitAll()
-                .logoutSuccessUrl("/");
+                    .logoutUrl("/logout")
+                    .invalidateHttpSession(true)
+                    .clearAuthentication(true)
+                    .permitAll()
+                    .logoutSuccessUrl("/");
     }
 
     @Autowired
