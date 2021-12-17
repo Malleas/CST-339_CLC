@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/html">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
@@ -32,17 +33,20 @@
         <img style="vertical-align: middle" th:src="@{/images/logo.png}" width="75" height="75">
         <span style="text-align: left">Random Widget Company</span>
     </div>
-
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #9CB2BC">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Home</a>
             <a class="navbar-brand" href="/login/">Login</a>
             <a class="navbar-brand" href="/registration/">Registration</a>
             <a class="navbar-brand" href="/products/">Products</a>
+            <div>
+                <form style="float: right" th:action="@{/logout}" method="POST">
+                    <button type="submit" class="btn btn-default navbar-btn">Logout</button>
+                </form>
+            </div>
         </div>
     </nav>
 </div>
-
 <div class="footer" th:fragment="footer">
     <h5 style="text-align: center">Copyright 2021 Grand Canyon University</h5>
 </div>
