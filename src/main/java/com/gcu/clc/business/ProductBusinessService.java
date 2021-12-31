@@ -19,6 +19,11 @@ public class ProductBusinessService {
     public List<ProductModel> getAll() {
         return productDataService.getAll();
     }
+
+    public ProductModel getById(Integer productId) {
+        return productDataService.getById(productId);
+    }
+
     public boolean updateProduct(ProductModel productModel){
         return productDataService.update(productModel);
     }

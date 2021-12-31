@@ -45,7 +45,7 @@ public class ProductDataService implements DataAccessInterface<ProductModel> {
 
     @Override
     public ProductModel getById(int id) {
-        String sql = "SELECT * FROM PRODUCTS WHERE PRODUCT_ID = ?";
+        String sql = "SELECT * FROM PRODUCT WHERE PRODUCT_ID = ?";
         ProductModel product = new ProductModel();
         try {
             SqlRowSet srs = jdbcTemplate.queryForRowSet(sql, id);
