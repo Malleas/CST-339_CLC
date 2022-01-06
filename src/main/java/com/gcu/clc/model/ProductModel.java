@@ -26,12 +26,12 @@ public class ProductModel {
     @Range(min=1, max=1000, message="Product quantity must be between 1 and 10 characters")
     private Integer productQuantity;
 
-    /**public ProductModel(String productName, String productDescription, Float productPrice, Integer productQuantity) {
+    public ProductModel(String productName, String productDescription, Float productPrice, Integer productQuantity) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productPrice = productPrice;
         this.productQuantity = productQuantity;
-    }*/
+    }
 
     public ProductModel(Integer productId, String productName, String productDescription, Float productPrice, Integer productQuantity) {
         this.productId = productId;
